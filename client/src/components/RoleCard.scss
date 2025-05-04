@@ -1,0 +1,28 @@
+@import '../scss/variables';
+
+.role-card {
+  border: 2px solid $color-steel;
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: 0.3s ease;
+  cursor: pointer;
+  background-color: $color-white;
+  text-align: left;
+
+  h2 {
+    font-family: $font-header;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: $color-graphite;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: $color-yellow;
+  }
+}
