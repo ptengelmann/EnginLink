@@ -1,0 +1,39 @@
+@import '../scss/variables';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: $color-steel;
+  color: $color-white;
+
+  &__logo {
+    font-size: 1.8rem;
+    font-family: $font-header;
+    font-weight: bold;
+  }
+
+  &__menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+
+    li {
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &.cta {
+        background-color: $color-yellow;
+        color: $color-steel;
+        padding: 0.4rem 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

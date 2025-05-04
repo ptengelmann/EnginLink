@@ -1,0 +1,52 @@
+@import '../scss/variables';
+
+.hero {
+  background-color: $color-white;
+  text-align: center;
+  padding: 5rem 2rem;
+
+  &__text {
+    max-width: 800px;
+    margin: 0 auto;
+
+    h1 {
+      font-family: $font-header;
+      font-size: 3rem;
+      color: $color-steel;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: $color-graphite;
+    }
+
+    .hero__cta {
+      margin-top: 2rem;
+
+      button {
+        margin: 0 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:first-child {
+          background-color: $color-yellow;
+          color: $color-steel;
+        }
+
+        &.secondary {
+          background-color: transparent;
+          color: $color-steel;
+          border: 2px solid $color-steel;
+        }
+
+        &:hover {
+          opacity: 0.85;
+        }
+      }
+    }
+  }
+}
