@@ -1,0 +1,52 @@
+@import '../../styles/variables';
+
+.hero {
+  background: $color-bg;
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+
+  .content {
+    max-width: 800px;
+    margin: auto;
+
+    h1 {
+      font-family: $font-header;
+      font-size: 2.5rem;
+      color: $color-steel;
+      margin-bottom: 1.25rem;
+    }
+
+    p {
+      font-family: $font-body;
+      font-size: 1.1rem;
+      color: $color-graphite;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+
+      a {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      .cta {
+        background-color: $color-yellow;
+        color: $color-steel;
+      }
+
+      .alt {
+        border: 2px solid $color-steel;
+        color: $color-steel;
+      }
+    }
+  }
+}

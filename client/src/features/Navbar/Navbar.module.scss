@@ -1,0 +1,35 @@
+@import '../../styles/variables';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 2rem;
+  background: $color-white;
+  border-bottom: 1px solid $color-graphite;
+
+  .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color-steel;
+    font-family: $font-header;
+    text-decoration: none;
+  }
+
+  .menu {
+    display: flex;
+    gap: 1.5rem;
+
+    a {
+      text-decoration: none;
+      font-size: 1rem;
+      color: $color-steel;
+      font-family: $font-body;
+      font-weight: 500;
+
+      &:hover {
+        color: $color-yellow;
+      }
+    }
+  }
+}
