@@ -1,81 +1,561 @@
 @import '../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
-.rolePage {
-  padding: 4rem 2rem;
-  background: $color-bg;
-  text-align: center;
+// Premium color system
+$steel-blue: #1e3a8a !default;
+$graphite-gray: #374151 !default;
+$electric-yellow: #fbbf24 !default;
+$surface-white: #ffffff !default;
 
-  .intro {
-    max-width: 700px;
-    margin: 0 auto 3rem;
+// Advanced shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+// Easing
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+.roleSelectionContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #f1f5f9 75%, #ffffff 100%);
+  font-family: 'Manrope', sans-serif;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+
+  .backgroundSystem {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+
+    .gridOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(30, 58, 138, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 58, 138, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    .floatingIcon {
+      position: absolute;
+      color: rgba(30, 58, 138, 0.08);
+      animation: iconFloat 8s ease-in-out infinite;
+
+      &.icon1 { top: 10%; left: 8%; animation-delay: 0s; }
+      &.icon2 { top: 15%; right: 12%; animation-delay: 1s; }
+      &.icon3 { bottom: 25%; left: 15%; animation-delay: 2s; }
+      &.icon4 { bottom: 15%; right: 20%; animation-delay: 3s; }
+      &.icon5 { top: 70%; left: 10%; animation-delay: 4s; }
+      &.icon6 { top: 45%; right: 8%; animation-delay: 5s; }
+      &.icon7 { top: 80%; right: 50%; animation-delay: 6s; }
+      &.icon8 { top: 30%; left: 50%; animation-delay: 7s; }
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s $ease-bounce;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+
+      .logoIcon {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, $steel-blue 0%, #2563eb 100%);
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        box-shadow: $shadow-lg;
+        animation: logoFloat 4s ease-in-out infinite;
+      }
+
+      .logoText {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: $steel-blue;
+        letter-spacing: -0.02em;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(30, 58, 138, 0.1);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $steel-blue;
+      margin-bottom: 2rem;
+      box-shadow: $shadow-md;
+
+      svg {
+        color: $electric-yellow;
+      }
+    }
 
     h1 {
-      font-family: $font-header;
-      font-size: 2.2rem;
-      color: $color-steel;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: $steel-blue;
       margin-bottom: 1rem;
+      letter-spacing: -0.02em;
     }
 
     p {
-      font-family: $font-body;
-      color: $color-graphite;
-      font-size: 1rem;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: $graphite-gray;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .platformStats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+
+      .statItem {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: $graphite-gray;
+
+        svg {
+          color: $steel-blue;
+        }
+      }
     }
   }
 
-  .grid {
+  .rolesGrid {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    max-width: 1000px;
-    margin: auto;
-  }
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s $ease-bounce 0.3s;
 
-  .card {
-    background: $color-white;
-    border: 2px solid $color-graphite;
-    border-radius: 12px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    cursor: pointer;
-    text-align: left;
-
-    &:hover {
-      border-color: $color-yellow;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    h2 {
-      font-size: 1.4rem;
-      font-family: $font-header;
-      color: $color-steel;
-    }
-
-    h3 {
-      font-size: 1rem;
-      margin: 0.5rem 0;
-      font-weight: 500;
-      color: $color-graphite;
-    }
-
-    p {
-      font-size: 0.95rem;
-      line-height: 1.4;
-      color: $color-graphite;
-    }
-
-    .selectBtn {
-      margin-top: 2rem;
-      padding: 0.75rem 1rem;
-      background-color: $color-yellow;
-      color: $color-steel;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
+    .roleCard {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      padding: 2.5rem;
       cursor: pointer;
+      transition: all 0.4s $ease-smooth;
+      position: relative;
+      overflow: hidden;
+      animation: cardSlideIn 0.8s $ease-bounce both;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--role-color);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      &:hover,
+      &.hovered {
+        transform: translateY(-8px);
+        box-shadow: $shadow-2xl;
+        border-color: var(--role-color);
+
+        &::before {
+          opacity: 1;
+        }
+
+        .roleIcon {
+          transform: scale(1.1);
+          background: var(--role-color);
+        }
+
+        .selectBtn {
+          background: var(--role-color);
+          color: white;
+          transform: translateY(-2px);
+        }
+      }
+
+      &.selected {
+        border-color: var(--role-color);
+        box-shadow: $shadow-xl;
+
+        &::before {
+          opacity: 1;
+        }
+
+        .selectBtn {
+          background: var(--role-color);
+          color: white;
+        }
+      }
+
+      .cardHeader {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+
+        .roleIcon {
+          width: 70px;
+          height: 70px;
+          background: rgba(30, 58, 138, 0.1);
+          border-radius: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $steel-blue;
+          transition: all 0.4s $ease-smooth;
+        }
+
+        .roleInfo {
+          flex: 1;
+
+          h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: $steel-blue;
+            margin-bottom: 0.25rem;
+          }
+
+          h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $graphite-gray;
+            margin: 0;
+          }
+        }
+      }
+
+      .roleDescription {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: $graphite-gray;
+        margin-bottom: 2rem;
+      }
+
+      .roleFeatures {
+        margin-bottom: 2rem;
+
+        .feature {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 0.75rem;
+          font-size: 0.95rem;
+          color: $graphite-gray;
+
+          svg {
+            color: #10b981;
+            flex-shrink: 0;
+          }
+        }
+      }
+
+      .roleStats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: rgba(30, 58, 138, 0.03);
+        border-radius: 16px;
+
+        .roleStat {
+          text-align: center;
+
+          .statValue {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: $steel-blue;
+            display: block;
+            margin-bottom: 0.25rem;
+          }
+
+          .statLabel {
+            font-size: 0.8rem;
+            color: $graphite-gray;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          }
+        }
+      }
+
+      .rolePreview {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 16px;
+        border: 1px solid rgba(30, 58, 138, 0.1);
+
+        .previewHeader {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: $steel-blue;
+
+          svg {
+            color: var(--role-color);
+          }
+        }
+
+        .engineerPreview {
+          .toolsList {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+
+            .toolTag {
+              padding: 0.25rem 0.75rem;
+              background: rgba(30, 58, 138, 0.1);
+              color: $steel-blue;
+              border-radius: 15px;
+              font-size: 0.8rem;
+              font-weight: 600;
+            }
+          }
+
+          .projectExample {
+            font-size: 0.9rem;
+            color: $graphite-gray;
+            font-weight: 500;
+          }
+        }
+
+        .recruiterPreview {
+          .searchFilters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+
+            .filterTag {
+              padding: 0.25rem 0.75rem;
+              background: rgba(76, 205, 196, 0.1);
+              color: #4ecdc4;
+              border-radius: 15px;
+              font-size: 0.8rem;
+              font-weight: 600;
+            }
+          }
+
+          .searchResults {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: $graphite-gray;
+
+            .topMatch {
+              color: #10b981;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      .selectBtn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 1rem 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(30, 58, 138, 0.2);
+        border-radius: 16px;
+        color: $steel-blue;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s $ease-smooth;
+        position: relative;
+        overflow: hidden;
+
+        .selectedOverlay {
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          animation: selectSlide 0.8s ease;
+        }
+      }
     }
   }
+
+  .trustSection {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s $ease-bounce 0.6s;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .trustBadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(30, 58, 138, 0.1);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $graphite-gray;
+      box-shadow: $shadow-md;
+
+      svg {
+        color: $electric-yellow;
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 1024px) {
+    .rolesGrid {
+      grid-template-columns: 1fr;
+    }
+
+    .header .platformStats {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+
+    .container {
+      padding: 0 1rem;
+    }
+
+    .header {
+      margin-bottom: 3rem;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+
+    .rolesGrid .roleCard {
+      padding: 2rem;
+
+      .cardHeader {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      .roleStats {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes selectSlide {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }

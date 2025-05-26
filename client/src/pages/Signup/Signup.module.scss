@@ -1,19 +1,408 @@
 @import '../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
 
-.signup {
-  padding: 4rem;
-  text-align: center;
+// Premium color system
+$steel-blue: #1e3a8a !default;
+$graphite-gray: #374151 !default;
+$electric-yellow: #fbbf24 !default;
+$surface-white: #ffffff !default;
 
-  h1 {
-    font-family: $font-header;
-    color: $color-steel;
-    font-size: 2rem;
-    margin-bottom: 1rem;
+// Advanced shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+// Easing
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+.signupContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #f1f5f9 75%, #ffffff 100%);
+  font-family: 'Manrope', sans-serif;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+
+  .backgroundSystem {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+
+    .gridOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(30, 58, 138, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 58, 138, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    .floatingIcon {
+      position: absolute;
+      color: rgba(30, 58, 138, 0.08);
+      animation: iconFloat 8s ease-in-out infinite;
+
+      &.icon1 { top: 10%; left: 8%; animation-delay: 0s; }
+      &.icon2 { top: 20%; right: 12%; animation-delay: 1s; }
+      &.icon3 { bottom: 25%; left: 15%; animation-delay: 2s; }
+      &.icon4 { bottom: 15%; right: 20%; animation-delay: 3s; }
+      &.icon5 { top: 60%; left: 5%; animation-delay: 4s; }
+      &.icon6 { top: 40%; right: 8%; animation-delay: 5s; }
+    }
   }
 
-  p {
-    font-family: $font-body;
-    color: $color-graphite;
-    font-size: 1rem;
+  .signupContent {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    max-width: 1200px;
+    width: 100%;
+    min-height: 700px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: $shadow-2xl;
+    margin: 0 2rem;
+
+    .roleInfoSide {
+      background: linear-gradient(135deg, $steel-blue 0%, #1e40af 50%, #1e3a8a 100%);
+      padding: 3rem;
+      color: white;
+      position: relative;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: all 1s $ease-bounce;
+
+      &.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.05)"/></svg>');
+        background-size: 50px 50px;
+        animation: patternMove 30s linear infinite;
+      }
+
+      .roleInfo {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-bottom: 2.5rem;
+
+          .logoIcon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            animation: logoFloat 4s ease-in-out infinite;
+          }
+
+          .logoText {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.02em;
+          }
+        }
+
+        .roleHeader {
+          margin-bottom: 2.5rem;
+
+          .roleIconLarge {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 1.5rem;
+            box-shadow: $shadow-lg;
+            animation: roleIconFloat 4s ease-in-out infinite;
+          }
+
+          .roleDetails {
+            h1 {
+              font-family: 'Outfit', sans-serif;
+              font-size: 2.25rem;
+              font-weight: 700;
+              margin-bottom: 1rem;
+              line-height: 1.2;
+            }
+
+            p {
+              font-size: 1.1rem;
+              line-height: 1.6;
+              opacity: 0.9;
+              margin-bottom: 1.5rem;
+            }
+
+            .changeRoleBtn {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+              padding: 0.5rem 1rem;
+              background: rgba(255, 255, 255, 0.1);
+              backdrop-filter: blur(10px);
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              border-radius: 25px;
+              color: white;
+              font-family: inherit;
+              font-size: 0.9rem;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.3s $ease-smooth;
+
+              &:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateX(-2px);
+              }
+            }
+          }
+        }
+
+        .benefitsList {
+          margin-bottom: 2.5rem;
+          flex: 1;
+
+          h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+          }
+
+          .benefit {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+
+            svg {
+              color: $electric-yellow;
+              flex-shrink: 0;
+            }
+          }
+        }
+
+        .statsShowcase {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1rem;
+          margin-bottom: 2rem;
+
+          .statCard {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            transition: all 0.3s $ease-smooth;
+
+            &:hover {
+              transform: translateY(-2px);
+              background: rgba(255, 255, 255, 0.15);
+            }
+
+            .statIcon {
+              color: $electric-yellow;
+              margin-bottom: 0.5rem;
+            }
+
+            .statValue {
+              font-family: 'Outfit', sans-serif;
+              font-size: 1.25rem;
+              font-weight: 800;
+              margin-bottom: 0.25rem;
+            }
+
+            .statLabel {
+              font-size: 0.75rem;
+              opacity: 0.8;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+            }
+          }
+        }
+
+        .trustBadge {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 1rem;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
+          border-radius: 16px;
+          font-size: 0.85rem;
+          opacity: 0.9;
+          text-align: center;
+
+          svg {
+            color: $electric-yellow;
+            flex-shrink: 0;
+          }
+        }
+      }
+    }
+
+    .formSide {
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: all 1s $ease-bounce 0.2s;
+
+      &.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .formContainer {
+        width: 100%;
+        max-width: 400px;
+
+        .formHeader {
+          text-align: center;
+          margin-bottom: 2rem;
+
+          .welcomeBadge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(30, 58, 138, 0.1);
+            color: $steel-blue;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+
+            svg {
+              color: $electric-yellow;
+            }
+          }
+
+          h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: $steel-blue;
+            margin-bottom: 0.5rem;
+          }
+
+          p {
+            color: $graphite-gray;
+            font-size: 0.95rem;
+          }
+        }
+      }
+    }
   }
+
+  // Responsive Design
+  @media (max-width: 1024px) {
+    .signupContent {
+      grid-template-columns: 1fr;
+      margin: 1rem;
+    }
+
+    .roleInfoSide {
+      display: none;
+    }
+
+    .formSide {
+      padding: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+
+    .signupContent {
+      margin: 0.5rem;
+      border-radius: 16px;
+    }
+
+    .formSide {
+      padding: 1.5rem;
+
+      .formContainer .formHeader {
+        h2 {
+          font-size: 1.75rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .formSide {
+      padding: 1rem;
+    }
+  }
+}
+
+// Animations
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+@keyframes roleIconFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+@keyframes patternMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
 }
