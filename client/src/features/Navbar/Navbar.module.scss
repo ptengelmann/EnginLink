@@ -1,35 +1,410 @@
 @import '../../styles/variables';
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
+
+// Premium color system
+$steel-blue: #1e3a8a !default;
+$graphite-gray: #374151 !default;
+$electric-yellow: #fbbf24 !default;
+$surface-white: #ffffff !default;
+
+// Advanced shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+// Easing
+$ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 2rem;
-  background: $color-white;
-  border-bottom: 1px solid $color-graphite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(30, 58, 138, 0.08);
+  transition: all 0.3s $ease-smooth;
 
-  .logo a {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: $color-steel;
-    font-family: $font-header;
-    text-decoration: none;
+  &.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: $shadow-lg;
+    border-bottom-color: rgba(30, 58, 138, 0.12);
+
+    .logo .logoIcon {
+      transform: scale(0.95);
+    }
   }
 
-  .menu {
+  .container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
-    gap: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
 
+  .logo {
     a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
       text-decoration: none;
-      font-size: 1rem;
-      color: $color-steel;
-      font-family: $font-body;
-      font-weight: 500;
+      transition: all 0.3s $ease-smooth;
 
       &:hover {
-        color: $color-yellow;
+        transform: translateY(-1px);
+
+        .logoIcon {
+          transform: rotate(5deg) scale(1.05);
+        }
       }
     }
+
+    .logoIcon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, $steel-blue 0%, #2563eb 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: all 0.4s $ease-bounce;
+      box-shadow: $shadow-md;
+    }
+
+    .logoText {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $steel-blue;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  .desktopNav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .navItem {
+      position: relative;
+
+      .navLink {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        font-family: 'Manrope', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: $graphite-gray;
+        border-radius: 12px;
+        transition: all 0.3s $ease-smooth;
+        position: relative;
+
+        &:hover {
+          color: $steel-blue;
+          background: rgba(30, 58, 138, 0.05);
+          transform: translateY(-1px);
+        }
+
+        svg:last-child {
+          transition: transform 0.3s $ease-smooth;
+        }
+
+        &:hover svg:last-child {
+          transform: rotate(180deg);
+        }
+      }
+
+      .dropdown {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        left: 0;
+        min-width: 220px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(30, 58, 138, 0.1);
+        border-radius: 16px;
+        padding: 0.75rem;
+        box-shadow: $shadow-xl;
+        animation: dropdownSlide 0.3s $ease-bounce;
+
+        .dropdownItem {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.875rem 1rem;
+          text-decoration: none;
+          font-family: 'Manrope', sans-serif;
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: $graphite-gray;
+          border-radius: 12px;
+          transition: all 0.3s $ease-smooth;
+
+          &:hover {
+            color: $steel-blue;
+            background: rgba(30, 58, 138, 0.08);
+            transform: translateX(4px);
+          }
+
+          svg {
+            color: $steel-blue;
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+
+  .ctaSection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .loginBtn {
+      padding: 0.75rem 1.25rem;
+      text-decoration: none;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: $graphite-gray;
+      border-radius: 12px;
+      transition: all 0.3s $ease-smooth;
+
+      &:hover {
+        color: $steel-blue;
+        background: rgba(30, 58, 138, 0.05);
+        transform: translateY(-1px);
+      }
+    }
+
+    .joinBtn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      background: linear-gradient(135deg, $steel-blue 0%, #1e40af 100%);
+      color: white;
+      text-decoration: none;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 12px;
+      box-shadow: $shadow-md;
+      transition: all 0.3s $ease-smooth;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.6s ease;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+
+        &::before {
+          left: 100%;
+        }
+      }
+    }
+  }
+
+  .mobileToggle {
+    display: none;
+    background: none;
+    border: none;
+    color: $graphite-gray;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s $ease-smooth;
+
+    &:hover {
+      color: $steel-blue;
+      background: rgba(30, 58, 138, 0.05);
+    }
+  }
+
+  .mobileMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+    box-shadow: $shadow-xl;
+    animation: mobileSlide 0.3s $ease-bounce;
+
+    .mobileMenuContent {
+      padding: 1.5rem 2rem;
+
+      .mobileNavItem {
+        margin-bottom: 0.5rem;
+
+        .mobileNavLink {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 1rem;
+          text-decoration: none;
+          font-family: 'Manrope', sans-serif;
+          font-size: 1rem;
+          font-weight: 500;
+          color: $graphite-gray;
+          border-radius: 12px;
+          transition: all 0.3s $ease-smooth;
+
+          &:hover {
+            color: $steel-blue;
+            background: rgba(30, 58, 138, 0.05);
+            transform: translateX(4px);
+          }
+        }
+
+        .mobileDropdown {
+          margin-top: 0.5rem;
+          margin-left: 1rem;
+          padding-left: 1rem;
+          border-left: 2px solid rgba(30, 58, 138, 0.1);
+
+          .mobileDropdownItem {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: $graphite-gray;
+            border-radius: 12px;
+            transition: all 0.3s $ease-smooth;
+            margin-bottom: 0.25rem;
+
+            &:hover {
+              color: $steel-blue;
+              background: rgba(30, 58, 138, 0.05);
+              transform: translateX(4px);
+            }
+          }
+        }
+      }
+
+      .mobileCta {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(30, 58, 138, 0.1);
+
+        .mobileLogin {
+          padding: 1rem;
+          text-align: center;
+          text-decoration: none;
+          font-family: 'Manrope', sans-serif;
+          font-size: 1rem;
+          font-weight: 600;
+          color: $graphite-gray;
+          border-radius: 12px;
+          transition: all 0.3s $ease-smooth;
+
+          &:hover {
+            color: $steel-blue;
+            background: rgba(30, 58, 138, 0.05);
+          }
+        }
+
+        .mobileJoin {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 1rem 1.5rem;
+          background: linear-gradient(135deg, $steel-blue 0%, #1e40af 100%);
+          color: white;
+          text-decoration: none;
+          font-family: 'Manrope', sans-serif;
+          font-size: 1rem;
+          font-weight: 600;
+          border-radius: 12px;
+          box-shadow: $shadow-md;
+          transition: all 0.3s $ease-smooth;
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: $shadow-lg;
+          }
+        }
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 1024px) {
+    .desktopNav,
+    .ctaSection {
+      display: none;
+    }
+
+    .mobileToggle {
+      display: block;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1.5rem;
+      height: 64px;
+    }
+
+    .logo .logoText {
+      font-size: 1.375rem;
+    }
+
+    .mobileMenu .mobileMenuContent {
+      padding: 1rem 1.5rem;
+    }
+  }
+}
+
+// Animations
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mobileSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
