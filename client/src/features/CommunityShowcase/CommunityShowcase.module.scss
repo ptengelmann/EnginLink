@@ -1,0 +1,72 @@
+@import '../../styles/variables';
+
+.community {
+  padding: 5rem 2rem;
+  background: $color-bg;
+
+  .intro {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-family: $font-header;
+      color: $color-steel;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-family: $font-body;
+      color: $color-graphite;
+      font-size: 1.05rem;
+    }
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .card {
+    background: $color-white;
+    border-left: 4px solid $color-yellow;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease;
+
+    h3 {
+      font-family: $font-header;
+      font-size: 1.2rem;
+      color: $color-steel;
+      margin-bottom: 0.25rem;
+    }
+
+    .role {
+      font-size: 0.95rem;
+      color: $color-graphite;
+      margin-bottom: 0.5rem;
+      font-style: italic;
+    }
+
+    .project {
+      font-size: 0.95rem;
+      color: $color-black;
+      margin-bottom: 0.5rem;
+    }
+
+    .field {
+      font-size: 0.85rem;
+      color: $color-graphite;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+}
