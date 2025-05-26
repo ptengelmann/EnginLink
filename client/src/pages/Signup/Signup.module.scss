@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.signup {
+  padding: 4rem;
+  text-align: center;
+
+  h1 {
+    font-family: $font-header;
+    color: $color-steel;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-family: $font-body;
+    color: $color-graphite;
+    font-size: 1rem;
+  }
+}

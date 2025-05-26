@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.form {
+  background: $color-white;
+  padding: 3rem 2rem;
+  max-width: 500px;
+  margin: 3rem auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+
+  h1 {
+    font-family: $font-header;
+    font-size: 1.6rem;
+    color: $color-steel;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid $color-graphite;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+    background: $color-yellow;
+    color: $color-steel;
+    padding: 0.9rem 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}

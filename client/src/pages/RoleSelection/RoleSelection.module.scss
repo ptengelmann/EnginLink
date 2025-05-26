@@ -1,0 +1,81 @@
+@import '../../styles/variables';
+
+.rolePage {
+  padding: 4rem 2rem;
+  background: $color-bg;
+  text-align: center;
+
+  .intro {
+    max-width: 700px;
+    margin: 0 auto 3rem;
+
+    h1 {
+      font-family: $font-header;
+      font-size: 2.2rem;
+      color: $color-steel;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-family: $font-body;
+      color: $color-graphite;
+      font-size: 1rem;
+    }
+  }
+
+  .grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  .card {
+    background: $color-white;
+    border: 2px solid $color-graphite;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    text-align: left;
+
+    &:hover {
+      border-color: $color-yellow;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-family: $font-header;
+      color: $color-steel;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      font-weight: 500;
+      color: $color-graphite;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: $color-graphite;
+    }
+
+    .selectBtn {
+      margin-top: 2rem;
+      padding: 0.75rem 1rem;
+      background-color: $color-yellow;
+      color: $color-steel;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  }
+}
